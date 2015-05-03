@@ -65,6 +65,10 @@ class ResourceException extends HttpException
      */
     public function hasErrors()
     {
-        return ! $this->errors->isEmpty();
+        if ($this->errors instanceof MessageBag) {
+            return ! $this->errors->isEmpty();
+        } else {
+            return isset($this->errors);
+        }
     }
 }
